@@ -1,0 +1,121 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto',sans-serif;
+    font-weight: 200;
+}
+h1{
+    font-size: 2.5rem;
+    font-weight: 100;
+    color: rgb(119, 119, 119);
+}
+p{
+    font-family: 'Roboto',sans-serif;
+    font-weight:600;
+    color: rgb(189, 189, 189);
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+}
+a{
+    color: lightblue
+}
+footer{
+    background: #333333;
+    padding: 5vh;
+    color:white;
+    font-size: 0.6rem;
+    text-align: center;
+}
+.container{
+    display: flex;
+    /* align-items: center;
+    min-height: 100%; */
+    min-height: 100%;
+    width: 100%;
+}
+.about-me{
+    width: 50%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.img-container{
+    width: 50%;
+    position: relative; 
+}
+.img-container:before{
+    content: "";
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    bottom: 0px;
+    left: 20%;
+    opacity: 0.40;
+    width: 80%;
+    height: 100%; 
+    background-position: 40% 10%;
+    background-image: url('https://images01.nicepage.com/a1389d7bc73adea1e1c1fb7e/242c0c4187dc505db82d23a6/pexels-photo-5091121.jpeg');
+}
+.img-container > div{
+    max-width:300px;
+    max-height: 300px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 15%;
+    margin: auto 0;
+    border-radius: 50%;
+    
+}
+.img{
+    background-size: cover;
+    background-position: 50% 0;
+    background-image: url('https://images01.nicepage.com/a1389d7bc73adea1e1c1fb7e/242c0c4187dc505db82d23a6/pexels-photo-5091121.jpeg');
+}
+
+@media screen and (max-width:800px){
+    .img-container > div{
+        max-width:250px;
+        max-height: 250px;
+    } 
+}
+
+@media screen and (max-width:800px){
+    .img-container > div{
+        max-width:250px;
+        max-height: 250px;
+    } 
+}
+@media screen and (max-width:750px){
+    .container{
+        flex-direction: column;
+        align-items: center;
+        height:auto;
+        min-height: 0;
+    } 
+    .about-me{
+        padding: 0;
+        width: 85%;
+    }
+    .img-container{
+        width: 100%;
+        height: 300px;
+    }
+    .img-container:before{
+        width: 100%;
+        height: 80%;
+        left: 0;
+        top:20%;
+     }
+     .img-container >div{
+         right: 0;
+         margin: auto;
+     }
+}

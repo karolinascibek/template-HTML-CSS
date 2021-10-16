@@ -1,0 +1,104 @@
+body, html{
+    /* min-height: 100%; */
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans',sans-serif;
+    /* height: 100vh;
+    max-height: 100%; */
+}
+
+section{
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    padding: 5vh 0;
+    align-items: center;
+}
+h1,h2,h3,h4,h5{
+    text-transform: uppercase;
+    color: rgb(158, 158, 158);
+    letter-spacing: 0.2rem;
+}
+p{
+    font-size: 0.8rem;
+}
+i{
+    font-size: 1.2rem;
+}
+a{
+    color: lightblue
+}
+footer{
+    background: #333333;
+    padding: 5vh;
+    color:white;
+    font-size: 0.6rem;
+    text-align: center;
+}
+
+.img{
+    background-image: url(https://images03.nicepage.com/c461c07a441a5d220e8feb1a/0e840eae17ab5f919e88bd3f/as-min.jpg);
+    background-size: cover;
+    background-position:70% 0;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.contact{
+    display: flex;
+    max-width: 350px;
+    flex-direction: column;
+    margin-left: 20%;
+    padding: 1rem 1.5rem;
+    background-color: rgb(34, 34, 34);
+
+}
+.contact>div{
+    display: flex;
+}
+.items{
+    /* min-height: 25% ; */
+    text-align: center;
+}
+.items > div{
+    width: 100%;
+    padding: 1rem 0 ;
+    color: white;
+}
+
+
+.social-media  i:nth-child(2){
+    color: blue;
+}
+.social-media i:nth-child(3){
+    color: lightblue;
+}
+.social-media >i:nth-child(4){
+    color:red;
+}
+.social-media >i:nth-child(5){
+    color:pink;
+}
+
+@media screen and (max-width: 740px){
+    .contact > div{
+        flex-direction: column;
+    }
+    .items > div{
+        width: 100%;
+    }
+    .contact{
+        width: 30%;
+    }
+}
+@media screen and (max-width: 500px){
+   section{
+       justify-content: center;
+   }
+   .contact{
+       margin-left: 0;
+       margin-top: 15rem;
+       width: 60%;
+   }
+}
+
