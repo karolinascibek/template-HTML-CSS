@@ -5,62 +5,154 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto|Open+Sans:200,300,400,700,800,900&amp;subset=latin"
+        rel="preload" as="font">
+
     <link rel="stylesheet" href="style.css">
     <title>Slider</title>
 </head>
 
+
 <body>
+    <script src="https://kit.fontawesome.com/58b65c1a20.js" crossorigin="anonymous"></script>
+
     <nav>
         <div id="navigation">
             <ul>
-                <li> <a href="index.html">page 1</a></li>
-                <li> <a href="index.html"> page 2</a></li>
-                <li> <a href="index.html">page 3</a></li>
-                <li> <a href="index.html">page 4</a></li>
+                <li> <a class="nav-item" href="index.html">page 1</a></li>
+                <li> <a class="nav-item" href="index.html">page 2</a></li>
+                <li> <a class="nav-item" href="index.html">page 3</a></li>
+                <li> <a class="nav-item" href="index.html">page 4</a></li>
             </ul>
-            <button id="btn-open-menu">menu</button>
-        
-            <div id="btn-close-menu" class="wrap-menu-left">
-                <button>&times;</button>
-            </div>
+            <button class="nav-item" id="btn-open-menu">menu</button>
+
             <div id="hidden-box" class="wrap-menu-left" tabindex="0">
+                <div id="btn-close-menu" class="wrap-menu-left ">
+                    <button class="nav-wrap-menu-item">&times;</button>
+                </div>
                 <div id="wrap-menu">
                     <ul>
-                        <li> <a href="../template1/index.html">page 1</a></li>
-                        <li> <a href="index.html"> page 2</a></li>
-                        <li> <a href="index.html">page 3</a></li>
-                        <li> <a href="index.html">page 4</a></li>
+                        <li> <a class="nav-wrap-menu-item" href="../template1/index.html">page 1</a></li>
+                        <li> <a class="nav-wrap-menu-item" href="index.html"> page 2</a></li>
+                        <li> <a class="nav-wrap-menu-item" href="index.html">page 3</a></li>
+                        <li> <a class="nav-wrap-menu-item" href="index.html">page 4</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <section>
-        <!-- <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
- 
-        
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque architecto illum quidem, et tempore reiciendis magnam cum numquam ipsum obcaecati excepturi dolore, doloremque odio molestias eligendi quos temporibus amet accusamus?</div>
-    -->
+
+
+    <section class="slider">
+        <button id="btn-left"> <i class="fas fa-chevron-left"></i></button>
+        <div class="slider-container slider-container-hidden">
+            <div id="slider-background">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="screen-1" class="screen">
+                <div class="text-container">
+                    <h1>Forecast for <strong>the future</strong> of conferences</h1>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident
+                    </p>
+                    <p>Image from <strong>Freepik</strong></p>
+                </div>
+                <div class="img-container">
+                    <div class="img"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-container slider-container-hidden">
+            <div id="slider-background">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="screen-2" class="screen">
+                <div class="text-container">
+                    <h1><strong>Marketing </strong> Trends & Strategies‎</h1>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident
+                    </p>
+                    <p>Image from <strong>Freepik</strong></p>
+
+                </div>
+                <div class="img-container">
+                    <div class="img"></div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-container slider-container-hidden">
+            <div id="slider-background">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="screen-3" class="screen">
+                <div class="text-container">
+                    <h1><strong>Marketing </strong> Trends & Strategies‎</h1>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident
+                    </p>
+                    <p>Image from <strong>Freepik</strong></p>
+
+                </div>
+                <div class="img-container">
+                    <div class="img"></div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-container slider-container-hidden">
+            <div id="slider-background">
+                <div></div>
+                <div></div>
+            </div>
+            <div id="screen-4" class="screen">
+                <div class="text-container">
+                    <h1><strong>Marketing </strong> Trends & Strategies‎</h1>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident
+                    </p>
+                    <p>Image from <strong>Freepik</strong></p>
+
+                </div>
+                <div class="img-container">
+                    <div class="img"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <button id="btn-right"> <i class="fas fa-chevron-right"></i></button>
+        <div id="bottom-btns">
+            <div></div>
+            <div></div>
+        </div>
     </section>
+
+   
+
+
+    <script src="slider.js"></script>
+    <script src="app.js"></script>
+
+
+    <footer>
+        <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+        <p>Szablon wzorowany na <a
+                href="https://nicepage.com/html-templates/preview/marketing-trends-strategies-76696?device=desktop">
+                STRONIE</a></p>
+        <a href="https://nicepage.com/html-templates/preview/read-about-the-designer-781803?device=desktop">Website
+            Templates </a> created with <a
+            href="https://nicepage.com/html-templates/preview/dog-school-contacts-69459?device=desktop&fbclid=IwAR2bnoRtT4RMtNT_oyp_Ad5toWt2HUiBUh_2rkGHsaeY38KD537zWZ-qHAE">Website
+            Builder Software.</a>
+    </footer>
 
 </body>
 
