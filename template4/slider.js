@@ -1,48 +1,3 @@
-// // const screen1 = document.getElementById("screen-1");
-// // const scrren2 = document.getElementById("screen-2");
-
-// const btnLeft = document.getElementById("btn-left");
-// const btnRight = document.getElementById("btn-right");
-
-
-// const slider = document.querySelectorAll(".slider-container");
-// let currentScreen = 0
-
-// const setVisibleBox = (el, style) => {
-//     el.style.display = style
-// }
-
-// setVisibleBox(slider[currentScreen], "flex")
-
-// btnLeft.addEventListener("click", function(){
-//     setVisibleBox(slider[currentScreen], "none")
-//     currentScreen = currentScreen - 1;
-//     currentScreen = lookSizeSlider(currentScreen, slider)
-//     console.log(currentScreen)
-//     setVisibleBox(slider[currentScreen], "flex")
-// })
-
-// btnRight.addEventListener("click", function(){
-//     setVisibleBox(slider[currentScreen], "none")
-//     currentScreen = currentScreen + 1;
-//     currentScreen = lookSizeSlider(currentScreen, slider)
-//     console.log(currentScreen)
-//     setVisibleBox(slider[currentScreen], "flex")
-// })
-// const lookSizeSlider = (numberScreen, sliders) =>{
-//     if(numberScreen < 0){
-//         numberScreen = sliders.length -1;
-//     }
-//     if(numberScreen > sliders.length -1){
-//         numberScreen = 0;
-//     }
-//     return numberScreen;
-// }
-
-
-// console.log(slider)
-// setTransformBox(slider, "translateX(0)");
-// setTransformBox(scrren2, "translateX(-100%)");
 
 
 class Slider {
@@ -55,16 +10,12 @@ class Slider {
 
     }
 
-    setBottomBtn() {
-        const screen = this.getScreens();
-        const bottomBtns = document.getElementById("bottom-btns");
-
-    }
-    setScreen(nextScreen, direction = "l") {
+    // do poprawy
+    next(nextScreen, direction = "l") {
         const screens = this.getScreens()
 
         this.currentScreen = this.lookSizeSlider(nextScreen, screens)
-        const leftScreen = this.lookSizeSlider(this.currentScreen -1 , screens)
+        const leftScreen = this.lookSizeSlider(this.currentScreen - 1, screens)
         const rightScreen = this.lookSizeSlider(this.currentScreen + 1, screens)
 
 
@@ -83,11 +34,11 @@ class Slider {
         this.addClass(screens[rightScreen], "move-screen-hidden");
 
 
-        if(direction === "r"){
+        if (direction === "r") {
             this.addClass(screens[rightScreen], "move-screen-hidden");
             this.removeClass(screens[leftScreen], "move-screen-hidden");
         }
-        else{
+        else {
             this.addClass(screens[leftScreen], "move-screen-hidden");
             this.removeClass(screens[rightScreen], "move-screen-hidden");
         }
@@ -98,6 +49,16 @@ class Slider {
         this.removeClass(screens[this.currentScreen], "slider-container-hidden");
         this.removeClass(screens[this.currentScreen], "move-screen-hidden");
         this.addClass(screens[this.currentScreen], "slider-container-visible");
+
+    }
+    prev() {
+
+    }
+    current() {
+
+    }
+
+    changeBottomNav() {
 
     }
 
@@ -157,36 +118,237 @@ class Slider {
         el.classList.toggle(className)
     }
 
+
+    // method init slider
+    slider(objs) {
+        const slider = document.querySelector(".slider");
+
+        for (let [i, ob] of objs.entries()) {
+            // głowny kontener
+            const silderContainer = document.createElement("div");
+            silderContainer.classList.add("slider-container");
+            silderContainer.classList.add("slider-container-hidden")
+            silderContainer.classList.add("slider-container-hidden-right")
+
+            // tło
+            const sliderBackground = this.createSliderBackground()
+            silderContainer.appendChild(sliderBackground);
+
+            // głowny ekran slidera
+            const screen = this.createSliderScreen(i + 1, ob);
+            silderContainer.appendChild(screen);
+
+            slider.appendChild(silderContainer);
+        }
+
+        // navigacja pionowa
+        const btnRight = this.createNextBtn();
+        const btnLeft = this.createPrevBtn();
+        slider.appendChild(btnLeft)
+        slider.appendChild(btnRight)
+
+        //nawigacja pozioma
+        const btnsBottom = document.createElement("div");
+        btnsBottom.id = "bottom-btns";
+
+        for (let i = 0; i < objs.length; i++) {
+            const btn = document.createElement("div")
+            btn.id = `btn-bottom-${i}`;
+            btnsBottom.append(btn);
+        }
+        slider.append(btnsBottom);
+
+        //ekrany
+
+    }
+    createSliderBackground() {
+        const sliderBackground = document.createElement("div");
+        sliderBackground.id = "slider-background"
+
+        const div1 = document.createElement("div");
+        const div2 = document.createElement("div");
+        sliderBackground.appendChild(div1);
+        sliderBackground.appendChild(div2);
+        return sliderBackground
+    }
+    createSliderScreen(i, obj) {
+        const screen = document.createElement("div");
+        screen.id = `screen-${i}`;
+        screen.classList.add("screen");
+
+        // text container
+        const textContainer = this.createScreenTextBox(obj);
+
+        // img container
+        const imgContainer = this.createScreenImgBox(obj);
+
+        screen.append(textContainer);
+        screen.append(imgContainer);
+
+        return screen
+    }
+    createScreenImgBox(obj) {
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("img-container");
+
+        const div = document.createElement("div");
+        div.classList.add("img");
+        div.style.backgroundImage = `url(${obj.img})`;
+
+        imgContainer.append(div);
+        return imgContainer;
+    }
+    createScreenTextBox(obj) {
+        const textContainer = document.createElement("div");
+        textContainer.classList.add("text-container");
+
+        const h1 = document.createElement("h1");
+        const p1 = document.createElement("p");
+        const p2 = document.createElement("p");
+
+        h1.innerHTML = obj.h1;
+        p1.innerText = obj.p1;
+        p2.innerHTML = obj.p2;
+
+        textContainer.append(h1);
+        textContainer.append(p1);
+        textContainer.append(p2);
+        return textContainer;
+    }
+    createPrevBtn() {
+        const prev = document.createElement("button");
+        prev.id = "btn-left"
+        prev.innerHTML = "<i class='fas fa-chevron-left'></i>"
+        return prev
+    }
+    createNextBtn() {
+        const next = document.createElement("button");
+        next.id = "btn-right"
+        next.innerHTML = "<i class='fas fa-chevron-right'></i>"
+        return next
+
+    }
+    displayScreens() {
+
+    }
+    createBottomBtns() {
+
+    }
+
 }
 
+//test
+const objs = [
+    {
+        h1: "Forecast for <strong>the future</strong> of conferences",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velitesse 
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "https://images03.nicepage.com/c461c07a441a5d220e8feb1a/4fc1a9f340295789806c805b/734vv-min.jpg"
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "https://images03.nicepage.com/c461c07a441a5d220e8feb1a/580cb3b9e2b65fbf82c5eddd/bm.jpg?version="
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-3.jpg"
+    },
+
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-4.jpg"
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-4.jpg"
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-4.jpg"
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-4.jpg"
+    },
+    {
+        h1: "<strong>Marketing </strong> Trends & Strategies",
+        p1: `Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident`,
+        p2: "Image from <strong>Freepik</strong>",
+        img: "./img/screen-4.jpg"
+    },
+]
+
+
+
 const slider = new Slider();
+slider.slider(objs)
+
 const screens = slider.getScreens();
 const btnLeft = slider.getBtnLeft();
 const btnRight = slider.getBtnRight();
 
 let indexScreen = 0
 
-// slider.setVisibleBox(screens[indexScreen], "flex")
-// slider.setOpacityBox(screens[indexScreen], "1")
+
 slider.removeClass(screens[indexScreen], "slider-container-hidden")
 slider.addClass(screens[indexScreen], "slider-container-visible")
 
-slider.setScreen(indexScreen)
+slider.next(indexScreen)
 
 
 function nextScreen() {
-    const currentScreen = slider.getActualScreen();
-
-
-    slider.setScreen(indexScreen + 1, "r")
+    slider.next(indexScreen + 1, "r")
     indexScreen = slider.getCurrentScreen()
 }
 
 function prevScreen() {
-    slider.setScreen(indexScreen - 1, "l")
+    slider.next(indexScreen - 1, "l")
     indexScreen = slider.getCurrentScreen()
 }
 
 
 btnRight.addEventListener("click", nextScreen);
 btnLeft.addEventListener("click", prevScreen);
+
+
+const btnBottoms = document.getElementById("bottom-btns")
+btnBottoms.addEventListener('click', function (e) {
+    const btn = e.target
+    const btnId = btn.id.split("-");
+    const id = btnId[btnId.length - 1];
+
+    if (!isNaN(id)) {
+        console.log(id)
+        // slider.next(id, "l")
+        // indexScreen = slider.getCurrentScreen()
+    }else{
+        console.log("nie: ",id)
+    }
+})
